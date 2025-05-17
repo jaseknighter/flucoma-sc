@@ -27,7 +27,7 @@ set(FLUID_PATH "" CACHE PATH "Optional path to the Fluid Decomposition repo")
 
 if (APPLE)
   set(CMAKE_XCODE_GENERATE_SCHEME ON)
-  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.8" CACHE STRING "")
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "")
   #A consequence of targetting 10.8. Needs to be set globally from 10.15 onwards in order for the test program to compile successfully during configure 
   string(APPEND CMAKE_CXX_FLAGS " -stdlib=libc++")
 endif()
@@ -130,11 +130,6 @@ set(CMAKE_PDB_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/pdbtmp")
 
 if(APPLE OR WIN32)
   set(CMAKE_SHARED_MODULE_SUFFIX ".scx")
-endif()
-
-#needed for complaint-free static linking with GCC
-if(CMAKE_COMPILER_IS_GNUCXX)
-  target_compile_options( HISSTools_FFT PUBLIC -fPIC )
 endif()
 
 #sandbox regrettable dependency on SC internals for SendReply()
